@@ -25,6 +25,7 @@ end
 When /^I make the following guesses:(.*)$/ do |guesses|
   guesses = guesses.gsub(' ', '').split(',')
   guesses.each do |letter|
+    #save_and_open_page
     fill_in("guess", :with => letter)
     click_button("Guess!")
   end
