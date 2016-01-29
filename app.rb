@@ -45,7 +45,8 @@ class HangpersonApp < Sinatra::Base
       rescue ArgumentError
         flash[:message] = "Invalid guess."
     end
-    if !status then
+    #debugger
+    if status == false then
       flash[:message] = "You have already used that letter."
     end
     redirect '/show'
@@ -75,14 +76,19 @@ class HangpersonApp < Sinatra::Base
     if @game.check_win_or_lose == :win then
       erb :win
     else
-      erb :cheat
+      erb :show
     end
      # You may change/remove this line
   end
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    if @game.check_win_or_lose == :lose then
+      erb :lose
+    else
+      erb :show
+    end
+    #erb :lose # You may change/remove this line
   end
   
 end
